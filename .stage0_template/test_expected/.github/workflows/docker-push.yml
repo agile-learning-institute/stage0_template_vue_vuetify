@@ -42,5 +42,3 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/agile-learning-institute/mentorhub_sample_spa:latest
-          build-args: |
-            GITHUB_TOKEN=${{ secrets.GH_PAT }}

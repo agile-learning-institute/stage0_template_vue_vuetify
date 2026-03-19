@@ -13,7 +13,7 @@
     "cypress:run": "cypress run",
     "api": "mh down && mh up sample_api",
     "service": "mh down && mh up sample && npm run open",
-    "container": "DOCKER_BUILDKIT=0 docker build --build-arg GITHUB_TOKEN=$GITHUB_TOKEN -t ghcr.io/agile-learning-institute/mentorhub_sample_spa:latest .",
+    "container": "DOCKER_BUILDKIT=0 docker build -t ghcr.io/agile-learning-institute/mentorhub_sample_spa:latest .",
     "push": "docker push ghcr.io/agile-learning-institute/mentorhub_sample_spa:latest",
     "open": "open -a 'Google Chrome' 'http://localhost:8390' || google-chrome 'http://localhost:8390' || exg-open 'localhost:8390'",
     "build-publish": "npm install --include=dev && npm run container && npm run push",

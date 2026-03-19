@@ -5,11 +5,6 @@ WORKDIR /app
 
 COPY package.json ./
 
-# .npmrc for GitHub Packages - GITHUB_TOKEN required (build fails if missing)
-ARG GITHUB_TOKEN
-RUN echo "@{{org.git_org}}:registry=https://npm.pkg.github.com" > .npmrc && \
-    echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
-
 RUN npm install
 
 COPY . .
