@@ -10,14 +10,14 @@ export default defineConfig({
     }
   },
   server: {
-    port: 8390,
+    port: 8388,
     proxy: {
       '/api': {
-        target: 'http://localhost:8389',
+        target: 'http://localhost:8387',
         changeOrigin: true
       },
       '/dev-login': {
-        target: 'http://localhost:8389',
+        target: 'http://localhost:8387',
         changeOrigin: true
       }
     }

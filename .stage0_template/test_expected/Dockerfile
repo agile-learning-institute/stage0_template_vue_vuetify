@@ -26,7 +26,7 @@ FROM nginx:stable-alpine
 LABEL org.opencontainers.image.source="https://github.com/agile-learning-institute/mentorhub_sample_spa"
 
 ENV API_HOST=mentorhub_sample_api
-ENV API_PORT=8389
+ENV API_PORT=8387
 
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf.template /etc/nginx/nginx.conf.template
