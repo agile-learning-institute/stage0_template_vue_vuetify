@@ -6,17 +6,15 @@ This repository contains a Vue 3 single-page application (SPA) for the sample se
 - Mentor Hub [Developers Edition](https://github.com/agile-learning-institute/mentorhub/blob/main/CONTRIBUTING.md)
 - Developer [SPA Standard Prerequisites](https://github.com/agile-learning-institute/mentorhub/blob/main/DeveloperEdition/standards/spa_standards.md)
 
-## GitHub Packages (`spa_utils`)
+## Dependency: `spa_utils` (**public GitHub Packages**, not npmjs.org)
 
-This app depends on `@agile-learning-institute/mentorhub_spa_utils`, which is published to **GitHub Packages**, not the public npm registry. The committed **`.npmrc`** maps that npm scope to `npm.pkg.github.com`. Without it, `npm install` hits **registry.npmjs.org** and returns **404**.
+`@agile-learning-institute/mentorhub_spa_utils` is published to **`npm.pkg.github.com`** (organization scope on **GitHub Packages**), not the public **registry.npmjs.org** registry. The committed **`.npmrc`** maps this npm scope to GitHub’s npm host.
 
-GitHub’s npm registry requires authentication to **install**, even for public packages. **Local `npm install`:** configure the token once in your user config (PAT with **`read:packages`**, or GitHub CLI):
+GitHub still requires **authentication to install** any npm package from `npm.pkg.github.com`, including **public** ones—they are not anonymous like public packages on npmjs.
 
-```sh
-npm config set //npm.pkg.github.com/:_authToken "$(gh auth token)"
-```
-
-**Local Docker (`npm run container`, `build-package`):** export **`NODE_AUTH_TOKEN`** ( same PAT / `gh auth token` ); the `container` script passes it as a **`docker build --build-arg`**. **GitHub Actions:** **`docker-push.yml`** passes **`secrets.GITHUB_TOKEN`** as that build-arg.
+- **Local:** `npm config set //npm.pkg.github.com/:_authToken "$(gh auth token)"` (or a PAT with **`read:packages`**), then `npm install`.
+- **Docker / `npm run container`:** export **`NODE_AUTH_TOKEN`** (same token class); the image build appends it to `.npmrc` during `npm install`.
+- **GitHub Actions:** **`docker-push.yml`** passes **`secrets.GITHUB_TOKEN`** into the Docker build. For that token to download `@agile-learning-institute/…` from **another repository’s** package, open the **`mentorhub_spa_utils`** package on GitHub → **Package settings** → **Manage Actions access** → add each consuming SPA repo with at least **Read**. No extra repository secret is required.
 
 ## Quick Start
 
@@ -175,6 +173,10 @@ When adding a new resource or feature:
 ## Automation Support
 
 All interactive elements in this SPA include `data-automation-id` attributes following the `{domain}-{page}-{element}` naming convention.
+
+## CI (`.github/workflows/docker-push.yml`)
+
+**GHCR** push and **`npm install`** from GitHub Packages both use the workflow’s automatic **`secrets.GITHUB_TOKEN`**. Ensure the **`mentorhub_spa_utils`** GitHub Package grants **Actions access** to this SPA repository (see **Dependency** above).
 
 ## Configuration
 - Runtime configuration available at `/api/config` endpoint

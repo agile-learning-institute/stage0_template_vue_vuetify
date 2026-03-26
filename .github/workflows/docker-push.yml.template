@@ -42,5 +42,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: {{org.docker_host}}/{{org.docker_org}}/{{info.slug}}_{{service.name}}_spa:latest
+          # Public GitHub Packages still need npm auth. GITHUB_TOKEN works if the spa_utils *package* grants this repo Actions access (package Settings → Manage Actions access). No PAT secret required.
           build-args: |
             NODE_AUTH_TOKEN={% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}

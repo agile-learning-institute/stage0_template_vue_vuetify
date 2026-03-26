@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY package.json .npmrc ./
 
-# GitHub Packages requires a token with read:packages (e.g. `gh auth token`) even for public packages.
+# GitHub npm registry requires a token even for public packages (not registry.npmjs.org). see README.
 ARG NODE_AUTH_TOKEN
 # Leading \n so append is a new line if .npmrc has no trailing newline (else URL + //auth breaks npm).
 RUN if [ -n "$NODE_AUTH_TOKEN" ]; then \
