@@ -6,8 +6,9 @@ WORKDIR /app
 COPY package.json .npmrc ./
 
 ARG NODE_AUTH_TOKEN
+# Leading \n so append is a new line if .npmrc has no trailing newline (else URL + //auth breaks npm).
 RUN if [ -n "$NODE_AUTH_TOKEN" ]; then \
-      printf '//npm.pkg.github.com/:_authToken=%s\n' "$NODE_AUTH_TOKEN" >> .npmrc; \
+      printf '\n//npm.pkg.github.com/:_authToken=%s\n' "$NODE_AUTH_TOKEN" >> .npmrc; \
     fi && npm install
 
 COPY . .
