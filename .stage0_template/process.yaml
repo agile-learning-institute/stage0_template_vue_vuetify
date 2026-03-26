@@ -63,6 +63,8 @@ templates:
     merge: true
   - path: "./Dockerfile"
     merge: true
+  - path: "./.npmrc"
+    merge: true
   - path: "./package.json"
     merge: true
   - path: "./vite.config.ts"

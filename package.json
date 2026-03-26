@@ -13,7 +13,7 @@
     "cypress:run": "cypress run",
     "api": "{{info.developer_cli}} down && {{info.developer_cli}} up {{service.name}}_api",
     "service": "{{info.developer_cli}} down && {{info.developer_cli}} up {{service.name}} && npm run open",
-    "container": "DOCKER_BUILDKIT=0 docker build -t {{org.docker_host}}/{{org.docker_org}}/{{info.slug}}_{{service.name}}_spa:latest .",
+    "container": "DOCKER_BUILDKIT=0 docker build --build-arg NODE_AUTH_TOKEN=\"${NODE_AUTH_TOKEN}\" -t {{org.docker_host}}/{{org.docker_org}}/{{info.slug}}_{{service.name}}_spa:latest .",
     "push": "docker push {{org.docker_host}}/{{org.docker_org}}/{{info.slug}}_{{service.name}}_spa:latest",
     "open": "open -a 'Google Chrome' 'http://localhost:{{repo.port}}' || google-chrome 'http://localhost:{{repo.port}}' || exg-open 'localhost:{{repo.port}}'",
     "build-publish": "npm install --include=dev && npm run container && npm run push",

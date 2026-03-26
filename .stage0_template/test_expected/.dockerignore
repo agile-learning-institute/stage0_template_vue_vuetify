@@ -13,7 +13,6 @@ cypress/screenshots
 .env
 .env.local
 .env.*.local
-.npmrc
 .git
 .gitignore
 README.md

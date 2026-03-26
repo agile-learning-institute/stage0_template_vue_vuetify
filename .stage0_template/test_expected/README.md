@@ -6,6 +6,18 @@ This repository contains a Vue 3 single-page application (SPA) for the sample se
 - Mentor Hub [Developers Edition](https://github.com/agile-learning-institute/mentorhub/blob/main/CONTRIBUTING.md)
 - Developer [SPA Standard Prerequisites](https://github.com/agile-learning-institute/mentorhub/blob/main/DeveloperEdition/standards/spa_standards.md)
 
+## GitHub Packages (`spa_utils`)
+
+This app depends on `@agile-learning-institute/mentorhub_spa_utils`, which is published to **GitHub Packages**, not the public npm registry. The committed **`.npmrc`** maps that npm scope to `npm.pkg.github.com`. Without it, `npm install` hits **registry.npmjs.org** and returns **404**.
+
+GitHub’s npm registry requires authentication to **install**, even for public packages. **Local `npm install`:** configure the token once in your user config (PAT with **`read:packages`**, or GitHub CLI):
+
+```sh
+npm config set //npm.pkg.github.com/:_authToken "$(gh auth token)"
+```
+
+**Local Docker (`npm run container`, `build-package`):** export **`NODE_AUTH_TOKEN`** ( same PAT / `gh auth token` ); the `container` script passes it as a **`docker build --build-arg`**. **GitHub Actions:** **`docker-push.yml`** passes **`secrets.GITHUB_TOKEN`** as that build-arg.
+
 ## Quick Start
 
 ```sh
@@ -108,7 +120,7 @@ This template implements three domains:
 - Example: `useQuery({ queryKey: ['control', id], queryFn: () => api.getControl(id) })`
 
 ### Reusable Components and Composables
-This template uses components and composables from `@aagile-learning-institute/mentorhub_spa_utils`:
+This template uses components and composables from `@agile-learning-institute/mentorhub_spa_utils`:
 - **Components**: `AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`
 - **Composables**: `useResourceList`, `useErrorHandler`, `useRoles`
 - **Utilities**: `formatDate`, `validationRules`

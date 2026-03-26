@@ -3,9 +3,12 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json .npmrc ./
 
-RUN npm install
+ARG NODE_AUTH_TOKEN
+RUN if [ -n "$NODE_AUTH_TOKEN" ]; then \
+      printf '//npm.pkg.github.com/:_authToken=%s\n' "$NODE_AUTH_TOKEN" >> .npmrc; \
+    fi && npm install
 
 COPY . .
 RUN npm run build
