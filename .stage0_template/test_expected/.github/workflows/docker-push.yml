@@ -43,4 +43,4 @@ jobs:
           push: true
           tags: ghcr.io/agile-learning-institute/mentorhub_sample_spa:latest
           build-args: |
-            NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}

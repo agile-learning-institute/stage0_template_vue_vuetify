@@ -6,15 +6,15 @@ This repository contains a Vue 3 single-page application (SPA) for the {{service
 - {{info.name}} [Developers Edition]({{org.git_host}}/{{org.git_org}}/{{info.slug}}/blob/main/CONTRIBUTING.md)
 - Developer [SPA Standard Prerequisites]({{org.git_host}}/{{org.git_org}}/{{info.slug}}/blob/main/DeveloperEdition/standards/spa_standards.md)
 
-## Dependency: `spa_utils` (**public GitHub Packages**, not npmjs.org)
+## Dependency: `spa_utils` (git install, not the npm registry)
 
-`@{{org.git_org}}/{{info.slug}}_spa_utils` is published to **`npm.pkg.github.com`** (organization scope on **GitHub Packages**), not the public **registry.npmjs.org** registry. The committed **`.npmrc`** maps this npm scope to GitHub’s npm host.
+`@{{org.git_org}}/{{info.slug}}_spa_utils` is declared in **`package.json`** as a **GitHub git dependency** (`github:{{org.git_org}}/{{info.slug}}_spa_utils#main`). `npm install` clones that repository and runs its `prepare` script to build **`dist/`**. There is **no** semver range like `^0.1.0`; bump the branch or tag in **`package.json`** when you want a new revision.
 
-GitHub still requires **authentication to install** any npm package from `npm.pkg.github.com`, including **public** ones—they are not anonymous like public packages on npmjs.
+- **Public `spa_utils` repo:** local and CI installs work without credentials.
+- **Private `spa_utils` repo:** use a credential git understands locally (`gh auth setup-git`, or a PAT). For **Docker / `npm run container`**, export **`GITHUB_TOKEN`** (or **`NODE_AUTH_TOKEN`** as a fallback) so the image build can clone the library.
+- **GitHub Actions:** **`docker-push.yml`** passes **`secrets.GITHUB_TOKEN`** into the Docker build as **`GITHUB_TOKEN`**. The default job token can read **other private repos in the same org** only if your repository/org [allows Actions access to depend on private inner-source repos](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#allowing-access-to-components-in-a-private-repository); otherwise make **`{{info.slug}}_spa_utils`** public or use a PAT secret. This avoids **GitHub Packages** “Manage Actions access”, which cannot be automated for npm.
 
-- **Local:** `npm config set //npm.pkg.github.com/:_authToken "$(gh auth token)"` (or a PAT with **`read:packages`**), then `npm install`.
-- **Docker / `npm run container`:** export **`NODE_AUTH_TOKEN`** (same token class); the image build appends it to `.npmrc` during `npm install`.
-- **GitHub Actions:** **`docker-push.yml`** passes **`secrets.GITHUB_TOKEN`** into the Docker build. For that token to download `@{{org.git_org}}/…` from **another repository’s** package, open the **`{{info.slug}}_spa_utils`** package on GitHub → **Package settings** → **Manage Actions access** → add each consuming SPA repo with at least **Read**. No extra repository secret is required.
+Optional: **`{{info.slug}}_spa_utils`** may still be published to **`npm.pkg.github.com`** during umbrella launch for teams that want registry semver later; the SPA template does not consume that package by default.
 
 ## Quick Start
 

@@ -1,16 +1,19 @@
 # Build stage
 FROM node:20-alpine AS build
 
+RUN apk add --no-cache git
+
 WORKDIR /app
 
-COPY package.json .npmrc ./
+COPY package.json ./
 
-# GitHub npm registry requires a token even for public packages (not registry.npmjs.org). see README.
-ARG NODE_AUTH_TOKEN
-# Leading \n so append is a new line if .npmrc has no trailing newline (else URL + //auth breaks npm).
-RUN if [ -n "$NODE_AUTH_TOKEN" ]; then \
-      printf '\n//npm.pkg.github.com/:_authToken=%s\n' "$NODE_AUTH_TOKEN" >> .npmrc; \
-    fi && npm install
+# Install spa_utils via git (not npm.pkg.github.com). For private repos, pass the same token
+# Actions uses for the workflow so git can clone the library repo (public repo needs no token).
+ARG GITHUB_TOKEN=
+RUN if [ -n "$GITHUB_TOKEN" ]; then \
+      git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"; \
+    fi && \
+    npm install
 
 COPY . .
 RUN npm run build
