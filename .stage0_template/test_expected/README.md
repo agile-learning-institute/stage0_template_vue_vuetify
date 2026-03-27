@@ -1,4 +1,4 @@
-# template_spa
+# Mentor Hub — Sample SPA
 
 This repository contains a Vue 3 single-page application (SPA) for the sample service.
 

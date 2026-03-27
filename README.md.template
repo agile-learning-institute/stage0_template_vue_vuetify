@@ -1,4 +1,4 @@
-# template_spa
+# {{ info.name }} — {{ service.name | replace('_', ' ') | title }} SPA
 
 This repository contains a Vue 3 single-page application (SPA) for the {{service.name}} service.
 
