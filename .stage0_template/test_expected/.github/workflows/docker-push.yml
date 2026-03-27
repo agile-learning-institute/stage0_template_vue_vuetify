@@ -42,5 +42,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/agile-learning-institute/mentorhub_sample_spa:latest
+          # spa_utils is installed from git; token rewrites https://github.com/ for private library repos. Public spa_utils needs no token.
           build-args: |
             GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}

@@ -16,6 +16,10 @@ This repository contains a Vue 3 single-page application (SPA) for the sample se
 
 Optional: **`mentorhub_spa_utils`** may still be published to **`npm.pkg.github.com`** during umbrella launch for teams that want registry semver later; the SPA template does not consume that package by default.
 
+## `package-lock.json`
+
+The generated repository does **not** ship with **`package-lock.json`**. After you clone or merge the template, run **`npm install`** once to create it (and commit it to the repo afterward). Until the lockfile exists, the Docker build uses **`npm install`**; once **`package-lock.json`** is present, builds use **`npm ci`** so image installs match your machine and CI.
+
 ## Quick Start
 
 ```sh
