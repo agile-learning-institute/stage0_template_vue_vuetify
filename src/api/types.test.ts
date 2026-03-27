@@ -8,8 +8,6 @@ import type {
   Create,
   CreateInput,
   Consume,
-  DevLoginRequest,
-  DevLoginResponse,
   ConfigResponse,
   InfiniteScrollParams,
   InfiniteScrollResponse
@@ -204,43 +202,6 @@ describe('API Types', () => {
       expect(consume._id).toBe('507f1f77bcf86cd799439011')
       expect(consume.name).toBe('test-consume')
       expect(consume.status).toBe('active')
-    })
-  })
-
-  describe('DevLoginRequest', () => {
-    it('should match DevLoginRequest interface with all fields', () => {
-      const request: DevLoginRequest = {
-        subject: 'dev-user-1',
-        roles: ['admin', 'developer']
-      }
-      
-      expect(request.subject).toBe('dev-user-1')
-      expect(request.roles).toEqual(['admin', 'developer'])
-    })
-
-    it('should allow optional fields', () => {
-      const request: DevLoginRequest = {}
-      
-      expect(request.subject).toBeUndefined()
-      expect(request.roles).toBeUndefined()
-    })
-  })
-
-  describe('DevLoginResponse', () => {
-    it('should match DevLoginResponse interface', () => {
-      const response: DevLoginResponse = {
-        access_token: 'test-token',
-        token_type: 'bearer',
-        expires_at: '2024-01-01T00:00:00Z',
-        subject: 'dev-user-1',
-        roles: ['admin', 'developer']
-      }
-      
-      expect(response.access_token).toBe('test-token')
-      expect(response.token_type).toBe('bearer')
-      expect(response.expires_at).toBe('2024-01-01T00:00:00Z')
-      expect(response.subject).toBe('dev-user-1')
-      expect(response.roles).toEqual(['admin', 'developer'])
     })
   })
 

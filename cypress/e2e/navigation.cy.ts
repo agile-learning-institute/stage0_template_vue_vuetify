@@ -34,8 +34,8 @@ describe('Navigation Drawer', () => {
     cy.visit('/{{ service.data_domains.controls[0] | lower }}s')
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
-    cy.get('[data-automation-id="nav-{{ item | lower }}s-list-link"]').should('be.visible')
-    cy.get('[data-automation-id="nav-{{ item | lower }}s-new-link"]').should('be.visible')
+    cy.get('[data-automation-id="nav-{{ item | lower }}s-list-link"]').scrollIntoView().should('be.visible')
+    cy.get('[data-automation-id="nav-{{ item | lower }}s-new-link"]').scrollIntoView().should('be.visible')
   })
   {%- endfor %}
   {%- for item in service.data_domains.consumes %}
@@ -43,7 +43,7 @@ describe('Navigation Drawer', () => {
     cy.visit('/{{ service.data_domains.controls[0] | lower }}s')
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
-    cy.get('[data-automation-id="nav-{{ item | lower }}s-list-link"]').should('be.visible')
+    cy.get('[data-automation-id="nav-{{ item | lower }}s-list-link"]').scrollIntoView().should('be.visible')
   })
   {%- endfor %}
 
@@ -54,15 +54,15 @@ describe('Navigation Drawer', () => {
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
     // Admin and Logout should be visible in the drawer
-    cy.get('[data-automation-id="nav-admin-link"]').should('be.visible')
-    cy.get('[data-automation-id="nav-logout-link"]').should('be.visible')
+    cy.get('[data-automation-id="nav-admin-link"]').scrollIntoView().should('be.visible')
+    cy.get('[data-automation-id="nav-logout-link"]').scrollIntoView().should('be.visible')
   })
 
   it('should navigate to different pages from drawer', () => {
     cy.visit('/{{ service.data_domains.controls[0] | lower }}s')
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
-    cy.get('[data-automation-id="nav-{{ service.data_domains.creates[0] | lower }}s-list-link"]').click()
+    cy.get('[data-automation-id="nav-{{ service.data_domains.creates[0] | lower }}s-list-link"]').scrollIntoView().click()
     cy.url().should('include', '/{{ service.data_domains.creates[0] | lower }}s')
   })
 
@@ -70,7 +70,7 @@ describe('Navigation Drawer', () => {
     cy.visit('/{{ service.data_domains.controls[0] | lower }}s')
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
-    cy.get('[data-automation-id="nav-{{ service.data_domains.creates[0] | lower }}s-list-link"]').click()
+    cy.get('[data-automation-id="nav-{{ service.data_domains.creates[0] | lower }}s-list-link"]').scrollIntoView().click()
     
     // Drawer should close after navigation (temporary drawer)
     cy.wait(500)

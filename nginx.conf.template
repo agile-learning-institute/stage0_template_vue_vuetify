@@ -52,20 +52,6 @@ http {
             proxy_cache_bypass $http_upgrade;
         }
 
-        # Dev-login proxy - always proxied to API
-        # API controls access via ENABLE_LOGIN configuration (returns 404 if disabled)
-        location /dev-login {
-            proxy_pass http://${API_HOST}:${API_PORT}/dev-login;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_cache_bypass $http_upgrade;
-        }
-
         # Health check
         location /health {
             access_log off;

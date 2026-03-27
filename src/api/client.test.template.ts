@@ -15,48 +15,6 @@ describe('API Client', () => {
     vi.restoreAllMocks()
   })
 
-  describe('Authentication', () => {
-    it('should login successfully', async () => {
-      const mockResponse = {
-        access_token: 'test-token',
-        token_type: 'bearer',
-        expires_at: '2026-12-31T23:59:59Z',
-        subject: 'test-user',
-        roles: ['admin']
-      }
-
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse
-      })
-
-      const result = await api.devLogin({ subject: 'test-user', roles: ['admin'] })
-
-      expect(result).toEqual(mockResponse)
-      expect(mockFetch).toHaveBeenCalledWith(
-        '/dev-login',
-        expect.objectContaining({
-          method: 'POST',
-          headers: expect.objectContaining({
-            'Content-Type': 'application/json'
-          }),
-          body: JSON.stringify({ subject: 'test-user', roles: ['admin'] })
-        })
-      )
-    })
-
-    it('should handle login failure', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-        statusText: 'Unauthorized',
-        json: async () => ({ error: 'Invalid credentials' })
-      })
-
-      await expect(api.devLogin()).rejects.toThrow('Invalid credentials')
-    })
-  })
-
   describe('Config', () => {
     beforeEach(() => {
       localStorage.setItem('access_token', 'test-token')

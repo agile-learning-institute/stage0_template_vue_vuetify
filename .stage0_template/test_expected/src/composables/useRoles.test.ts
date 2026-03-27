@@ -20,7 +20,6 @@ describe('useRoles', () => {
     vi.mocked(useAuth).mockReturnValue({
       isAuthenticated: { value: true },
       roles: { value: ['admin', 'developer'] },
-      login: vi.fn(),
       logout: vi.fn(),
     })
     vi.mocked(useConfig).mockReturnValue({
@@ -45,7 +44,6 @@ describe('useRoles', () => {
     vi.mocked(useAuth).mockReturnValue({
       isAuthenticated: { value: true },
       roles: { value: [] },
-      login: vi.fn(),
       logout: vi.fn(),
     })
     vi.mocked(useConfig).mockReturnValue({
@@ -75,7 +73,6 @@ describe('useRoles', () => {
     vi.mocked(useAuth).mockReturnValue({
       isAuthenticated: { value: true },
       roles: { value: [] },
-      login: vi.fn(),
       logout: vi.fn(),
     })
     vi.mocked(useConfig).mockReturnValue({
@@ -98,7 +95,6 @@ describe('useRoles', () => {
     vi.mocked(useAuth).mockReturnValue({
       isAuthenticated: { value: true },
       roles: { value: ['admin'] },
-      login: vi.fn(),
       logout: vi.fn(),
     })
     vi.mocked(useConfig).mockReturnValue({

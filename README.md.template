@@ -101,7 +101,7 @@ This template implements three domains:
 ### Authentication
 - JWT tokens stored in localStorage (`access_token`, `token_expires_at`)
 - `useAuth()` composable manages authentication state
-- Login page uses `/dev-login` endpoint (proxied in dev, direct URL in containers)
+- Sign-in uses IdP / URL hash (`bootstrapDevAuthFromUrl`); there is no `/dev-login` proxy
 - Router guards protect routes requiring authentication
 
 ### API Client

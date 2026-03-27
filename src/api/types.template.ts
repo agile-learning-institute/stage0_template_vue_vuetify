@@ -60,20 +60,6 @@ export interface {{ item }} {
 }
 {% endfor %}
 
-// Authentication
-export interface DevLoginRequest {
-  subject?: string
-  roles?: string[]
-}
-
-export interface DevLoginResponse {
-  access_token: string
-  token_type: string
-  expires_at: string
-  subject: string
-  roles: string[]
-}
-
 // Configuration
 export interface ConfigResponse {
   config_items: unknown[]

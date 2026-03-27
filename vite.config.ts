@@ -15,10 +15,6 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:{{repo.port - 1}}',
         changeOrigin: true
-      },
-      '/dev-login': {
-        target: 'http://localhost:{{repo.port - 1}}',
-        changeOrigin: true
       }
     }
   }

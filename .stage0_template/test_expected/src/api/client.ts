@@ -8,8 +8,6 @@ import type {
 
   Consume,
 
-  DevLoginRequest, 
-  DevLoginResponse,
   ConfigResponse,
   Error,
   InfiniteScrollParams,
@@ -17,10 +15,6 @@ import type {
 } from './types'
 
 const API_BASE = '/api'
-
-function getDevLoginUrl(): string {
-  return '/dev-login'
-}
 
 class ApiError extends Error {
   constructor(
@@ -85,42 +79,6 @@ async function request<T>(
 }
 
 export const api = {
-  // Authentication
-  async devLogin(payload?: DevLoginRequest): Promise<DevLoginResponse> {
-    const url = getDevLoginUrl()
-    const token = localStorage.getItem('access_token')
-    
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    }
-    
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`
-    }
-
-    const response = await fetch(url, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(payload || {}),
-    })
-
-    if (!response.ok) {
-      let errorData: Error | null = null
-      try {
-        errorData = await response.json()
-      } catch {
-        // Ignore JSON parse errors
-      }
-      throw new ApiError(
-        errorData?.error || `HTTP ${response.status}: ${response.statusText}`,
-        response.status,
-        errorData || undefined
-      )
-    }
-
-    return response.json()
-  },
-
   // Config
   async getConfig(): Promise<ConfigResponse> {
     return request<ConfigResponse>('/config')

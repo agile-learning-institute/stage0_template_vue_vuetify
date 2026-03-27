@@ -85,6 +85,9 @@ templates:
     merge: true
   - path: "./src/composables/useRoles.ts"
     merge: true
+  - path: "./src/bootstrap-auth.template.ts"
+    output: "./src/bootstrap-auth.ts"
+    merge: true
   - path: "./src/pages/LoginPage.template.vue"
     output: "./src/pages/LoginPage.vue"
     merge: true

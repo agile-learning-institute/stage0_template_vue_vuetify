@@ -15,10 +15,6 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8387',
         changeOrigin: true
-      },
-      '/dev-login': {
-        target: 'http://localhost:8387',
-        changeOrigin: true
       }
     }
   }
