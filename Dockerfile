@@ -20,14 +20,19 @@ ENV VITE_IDP_LOGIN_URI=$VITE_IDP_LOGIN_URI
 # git dependencies on #main track the remote branch tip and can drift — generate and commit
 # package-lock.json locally. Rewrite git@ to https so lockfiles with git+ssh URLs clone in CI.
 ARG GITHUB_TOKEN=
-RUN if [ -n "$GITHUB_TOKEN" ]; then \
+# Cache mounts: avoid re-downloading registry tarballs and re-cloning git deps (spa_utils) on
+# every layer rebuild; under multi-arch/QEMU that extra I/O and CPU is especially costly.
+RUN --mount=type=cache,target=/root/.npm \
+    if [ -n "$GITHUB_TOKEN" ]; then \
       git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"; \
     fi && \
     git config --global url."https://github.com/".insteadOf "git@github.com:" && \
     if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
 COPY . .
-RUN npm run build
+# Vite dependency pre-bundle cache (default cacheDir); reuse across CI runs per architecture.
+RUN --mount=type=cache,target=/app/node_modules/.vite \
+    npm run build
 
 RUN DATE=$(date "+%Y-%m-%d:%H:%M:%S") && echo "$DATE" > ./dist/patch.txt
 

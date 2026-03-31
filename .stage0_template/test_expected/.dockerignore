@@ -1,6 +1,8 @@
 node_modules
 npm-debug.log
 dist
+.github
+cypress
 .nyc_output
 coverage
 .cypress

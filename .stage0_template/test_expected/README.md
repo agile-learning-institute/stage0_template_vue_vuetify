@@ -6,20 +6,6 @@ This repository contains a Vue 3 single-page application (SPA) for the sample se
 - Mentor Hub [Developers Edition](https://github.com/agile-learning-institute/mentorhub/blob/main/CONTRIBUTING.md)
 - Developer [SPA Standard Prerequisites](https://github.com/agile-learning-institute/mentorhub/blob/main/DeveloperEdition/standards/spa_standards.md)
 
-## Dependency: `spa_utils` (git install, not the npm registry)
-
-`@agile-learning-institute/mentorhub_spa_utils` is declared in **`package.json`** as a **GitHub git dependency** (`github:agile-learning-institute/mentorhub_spa_utils#main`). `npm install` clones that repository and runs its `prepare` script to build **`dist/`**. There is **no** semver range like `^0.1.0`; bump the branch or tag in **`package.json`** when you want a new revision.
-
-- **Public `spa_utils` repo:** local and CI installs work without credentials.
-- **Private `spa_utils` repo:** use a credential git understands locally (`gh auth setup-git`, or a PAT). For **Docker / `npm run container`**, export **`GITHUB_TOKEN`** so the image build can clone the library (build steps that read **`NODE_AUTH_TOKEN`** should use the same PAT value when required).
-- **GitHub Actions:** **`docker-push.yml`** passes **`secrets.GITHUB_TOKEN`** into the Docker build as **`GITHUB_TOKEN`**. The default job token can read **other private repos in the same org** only if your repository/org [allows Actions access to depend on private inner-source repos](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#allowing-access-to-components-in-a-private-repository); otherwise make **`mentorhub_spa_utils`** public or use a PAT secret. This avoids **GitHub Packages** “Manage Actions access”, which cannot be automated for npm.
-
-Optional: **`mentorhub_spa_utils`** may still be published to **`npm.pkg.github.com`** during umbrella launch for teams that want registry semver later; the SPA template does not consume that package by default.
-
-## `package-lock.json`
-
-The generated repository does **not** ship with **`package-lock.json`**. After you clone or merge the template, run **`npm install`** once to create it (and commit it to the repo afterward). Until the lockfile exists, the Docker build uses **`npm install`**; once **`package-lock.json`** is present, builds use **`npm ci`** so image installs match your machine and CI.
-
 ## Quick Start
 
 ```sh
@@ -80,25 +66,7 @@ src/
   plugins/          # Vuetify plugin configuration
 ```
 
-**Note**: This template uses `@agile-learning-institute/mentorhub_spa_utils` for reusable components, composables, and utilities. See the [spa_utils README](../spa_utils/README.md) for complete documentation on available components (`AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`), composables (`useResourceList`, `useErrorHandler`, `useRoles`), and utilities (`formatDate`, `validationRules`).
-
-## Domain Model
-
-This template implements three domains:
-
-### Control Domain
-- **List Page** (`/controls`) - Searchable data table with query support
-- **New Page** (`/controls/new`) - Form with required fields only
-- **Edit Page** (`/controls/:id`) - Full form with save-on-blur for each field
-
-### Create Domain
-- **List Page** (`/creates`) - Data table listing all creates
-- **New Page** (`/creates/new`) - Form with all properties
-- **View Page** (`/creates/:id`) - Read-only detail view
-
-### Consume Domain
-- **List Page** (`/consumes`) - Searchable data table with query support
-- **View Page** (`/consumes/:id`) - Read-only detail view
+**Note**: This template uses `@agile-learning-institute/mentorhub_spa_utils` for reusable components, composables, and utilities. See the [mentorhub_spa_utils README](../mentorhub_spa_utils/README.md) for complete documentation on available components (`AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`), composables (`useResourceList`, `useErrorHandler`, `useRoles`), and utilities (`formatDate`, `validationRules`).
 
 ## Key Implementation Patterns
 
@@ -127,7 +95,7 @@ This template uses components and composables from `@agile-learning-institute/me
 - **Composables**: `useResourceList`, `useErrorHandler`, `useRoles`
 - **Utilities**: `formatDate`, `validationRules`
 
-See the [spa_utils README](../spa_utils/README.md) for complete documentation and usage examples.
+See the [mentorhub_spa_utils README](../mentorhub_spa_utils/README.md) for complete documentation and usage examples.
 
 ### Component Architecture
 - **Pages**: Own routing, data fetching, and mutations. Pass data + callbacks to components.
@@ -178,9 +146,9 @@ When adding a new resource or feature:
 
 All interactive elements in this SPA include `data-automation-id` attributes following the `{domain}-{page}-{element}` naming convention.
 
-## CI (`.github/workflows/docker-push.yml`)
+## CI
 
-**GHCR** push and **`npm install`** from GitHub Packages both use the workflow’s automatic **`secrets.GITHUB_TOKEN`**. Ensure the **`mentorhub_spa_utils`** GitHub Package grants **Actions access** to this SPA repository (see **Dependency** above).
+`.github/workflows/docker-push.yml` builds and pushes the container image. Registry credentials and dependency policy for your org live in SRE / standards docs, not in this README.
 
 ## Configuration
 - Runtime configuration available at `/api/config` endpoint
