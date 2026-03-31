@@ -86,7 +86,7 @@ export const api = {
 
   // Control endpoints
   // 🎯 API methods use InfiniteScrollParams and InfiniteScrollResponse types
-  // These types are compatible with spa_utils useInfiniteScroll composable
+  // Shapes used by spa_utils useInfiniteScroll
 
   async getControls(params?: InfiniteScrollParams): Promise<InfiniteScrollResponse<Control>> {
     const queryParams = new URLSearchParams()

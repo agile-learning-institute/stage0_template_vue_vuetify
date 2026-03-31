@@ -69,6 +69,8 @@ templates:
     merge: true
   - path: "./cypress.config.ts" 
     merge: true
+  - path: "./cypress/support/e2e.ts"
+    merge: true
   - path: "./cypress/e2e/control.cy.template.ts"
     mergeFor:
       items: service.data_domains.controls
@@ -85,8 +87,8 @@ templates:
     merge: true
   - path: "./src/composables/useRoles.ts"
     merge: true
-  - path: "./src/bootstrap-auth.template.ts"
-    output: "./src/bootstrap-auth.ts"
+  - path: "./src/initAuth.template.ts"
+    output: "./src/initAuth.ts"
     merge: true
   - path: "./src/pages/LoginPage.template.vue"
     output: "./src/pages/LoginPage.vue"

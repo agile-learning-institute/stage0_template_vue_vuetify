@@ -40,7 +40,7 @@ describe('useRoles', () => {
     expect(hasRole('user').value).toBe(false)
   })
 
-  it('should fallback to config token roles when auth roles not available', () => {
+  it('should use config token roles when auth roles are not available', () => {
     vi.mocked(useAuth).mockReturnValue({
       isAuthenticated: { value: true },
       roles: { value: [] },

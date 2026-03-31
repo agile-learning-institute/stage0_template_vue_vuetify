@@ -25,8 +25,8 @@ describe('Navigation Drawer', () => {
     cy.visit('/{{ item | lower }}s')
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
-    cy.get('[data-automation-id="nav-{{ item | lower }}s-list-link"]').should('be.visible')
-    cy.get('[data-automation-id="nav-{{ item | lower }}s-new-link"]').should('be.visible')
+    cy.get('[data-automation-id="nav-{{ item | lower }}s-list-link"]').scrollIntoView().should('be.visible')
+    cy.get('[data-automation-id="nav-{{ item | lower }}s-new-link"]').scrollIntoView().should('be.visible')
   })
   {%- endfor %}
   {%- for item in service.data_domains.creates %}

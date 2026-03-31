@@ -1,22 +1,9 @@
 import { ref, computed } from 'vue'
 
-const accessToken = ref<string | null>(null)
-const tokenExpiresAt = ref<string | null>(null)
-const roles = ref<string[]>([])
-
-function readStorageIntoRefs(): void {
-  accessToken.value = localStorage.getItem('access_token')
-  tokenExpiresAt.value = localStorage.getItem('token_expires_at')
-  const storedRoles = localStorage.getItem('user_roles')
-  roles.value = storedRoles ? JSON.parse(storedRoles) : []
-}
-
-readStorageIntoRefs()
-
-/** Call after `bootstrapDevAuthFromUrl()` so refs match localStorage (import order safe). */
-export function rehydrateAuthFromStorage(): void {
-  readStorageIntoRefs()
-}
+const accessToken = ref<string | null>(localStorage.getItem('access_token'))
+const tokenExpiresAt = ref<string | null>(localStorage.getItem('token_expires_at'))
+const storedRoles = localStorage.getItem('user_roles')
+const roles = ref<string[]>(storedRoles ? JSON.parse(storedRoles) : [])
 
 export function useAuth() {
   const isAuthenticated = computed(() => {

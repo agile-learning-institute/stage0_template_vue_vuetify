@@ -9,8 +9,8 @@
           <v-card-text class="text-body-1">
             <p class="mb-4">
               Use your identity provider or the Developer Edition welcome flow. Tokens can be
-              applied via URL hash (<code>bootstrapDevAuthFromUrl</code> from spa_utils runs in
-              <code>src/bootstrap-auth.ts</code> before the app mounts).
+              applied via URL hash (<code>bootstrapAuthFromUrl</code> from spa_utils runs in
+              <code>src/initAuth.ts</code> before the app mounts).
             </p>
             <p v-if="idpLoginUri" class="mb-4">
               <v-btn
@@ -29,7 +29,7 @@
               data-automation-id="sign-in-hash-hint"
             >#access_token=JWT&amp;expires_at=ISO8601&amp;roles=admin,developer</pre>
             <p v-if="redirectHint" class="mb-4 text-medium-emphasis">
-              Next: <strong>{{ redirectHint }}</strong>
+              Next: <strong>{% raw %}{{ redirectHint }}{% endraw %}</strong>
             </p>
             <v-btn
               color="primary"

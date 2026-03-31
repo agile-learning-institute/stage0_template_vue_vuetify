@@ -11,7 +11,7 @@ This repository contains a Vue 3 single-page application (SPA) for the {{service
 `@{{org.git_org}}/{{info.slug}}_spa_utils` is declared in **`package.json`** as a **GitHub git dependency** (`github:{{org.git_org}}/{{info.slug}}_spa_utils#main`). `npm install` clones that repository and runs its `prepare` script to build **`dist/`**. There is **no** semver range like `^0.1.0`; bump the branch or tag in **`package.json`** when you want a new revision.
 
 - **Public `spa_utils` repo:** local and CI installs work without credentials.
-- **Private `spa_utils` repo:** use a credential git understands locally (`gh auth setup-git`, or a PAT). For **Docker / `npm run container`**, export **`GITHUB_TOKEN`** (or **`NODE_AUTH_TOKEN`** as a fallback) so the image build can clone the library.
+- **Private `spa_utils` repo:** use a credential git understands locally (`gh auth setup-git`, or a PAT). For **Docker / `npm run container`**, export **`GITHUB_TOKEN`** so the image build can clone the library (build steps that read **`NODE_AUTH_TOKEN`** should use the same PAT value when required).
 - **GitHub Actions:** **`docker-push.yml`** passes **`secrets.GITHUB_TOKEN`** into the Docker build as **`GITHUB_TOKEN`**. The default job token can read **other private repos in the same org** only if your repository/org [allows Actions access to depend on private inner-source repos](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#allowing-access-to-components-in-a-private-repository); otherwise make **`{{info.slug}}_spa_utils`** public or use a PAT secret. This avoids **GitHub Packages** “Manage Actions access”, which cannot be automated for npm.
 
 Optional: **`{{info.slug}}_spa_utils`** may still be published to **`npm.pkg.github.com`** during umbrella launch for teams that want registry semver later; the SPA template does not consume that package by default.
@@ -105,7 +105,7 @@ This template implements three domains:
 ### Authentication
 - JWT tokens stored in localStorage (`access_token`, `token_expires_at`)
 - `useAuth()` composable manages authentication state
-- Sign-in uses IdP / URL hash (`bootstrapDevAuthFromUrl`); there is no `/dev-login` proxy
+- Sign-in uses IdP / URL hash (`bootstrapAuthFromUrl` from spa_utils); APIs are not used as a login surface
 - Router guards protect routes requiring authentication
 
 ### API Client

@@ -17,8 +17,8 @@ describe('Navigation Drawer', () => {
     cy.visit('/controls')
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
-    cy.get('[data-automation-id="nav-controls-list-link"]').should('be.visible')
-    cy.get('[data-automation-id="nav-controls-new-link"]').should('be.visible')
+    cy.get('[data-automation-id="nav-controls-list-link"]').scrollIntoView().should('be.visible')
+    cy.get('[data-automation-id="nav-controls-new-link"]').scrollIntoView().should('be.visible')
   })
   it('should have all create domain links in drawer', () => {
     cy.visit('/controls')
