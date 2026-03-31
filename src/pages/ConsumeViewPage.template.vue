@@ -63,10 +63,10 @@ import { useQuery } from '@tanstack/vue-query'
 import { useErrorHandler } from '@{{org.git_org}}/{{info.slug}}_spa_utils'
 import { api } from '@/api/client'
 
-const route = useRoute()
+const routeLocation = useRoute()
 const router = useRouter()
 
-const {{item | lower}}Id = computed(() => route.params.id as string)
+const {{item | lower}}Id = computed(() => routeLocation.params.id as string)
 
 const { data: {{item | lower}}, isLoading, error: queryError } = useQuery({
   queryKey: ['{{item | lower}}', {{item | lower}}Id],

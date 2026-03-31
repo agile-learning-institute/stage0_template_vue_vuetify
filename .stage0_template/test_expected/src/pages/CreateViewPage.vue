@@ -102,10 +102,10 @@ import { useQuery } from '@tanstack/vue-query'
 import { formatDate, useErrorHandler } from '@agile-learning-institute/mentorhub_spa_utils'
 import { api } from '@/api/client'
 
-const route = useRoute()
+const routeLocation = useRoute()
 const router = useRouter()
 
-const createId = computed(() => route.params.id as string)
+const createId = computed(() => routeLocation.params.id as string)
 
 const { data: create, isLoading, error: queryError } = useQuery({
   queryKey: ['create', createId],

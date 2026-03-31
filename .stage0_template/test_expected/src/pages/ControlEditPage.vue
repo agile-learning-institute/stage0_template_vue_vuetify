@@ -126,11 +126,11 @@ import { api } from '@/api/client'
 import { AutoSaveField, AutoSaveSelect, validationRules, formatDate, useErrorHandler } from '@agile-learning-institute/mentorhub_spa_utils'
 import type { ControlUpdate } from '@/api/types'
 
-const route = useRoute()
+const routeLocation = useRoute()
 const router = useRouter()
 const queryClient = useQueryClient()
 
-const controlId = computed(() => route.params.id as string)
+const controlId = computed(() => routeLocation.params.id as string)
 
 const { data: control, isLoading, error: queryError } = useQuery({
   queryKey: ['control', controlId],

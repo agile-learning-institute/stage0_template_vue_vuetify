@@ -63,10 +63,10 @@ import { useQuery } from '@tanstack/vue-query'
 import { useErrorHandler } from '@agile-learning-institute/mentorhub_spa_utils'
 import { api } from '@/api/client'
 
-const route = useRoute()
+const routeLocation = useRoute()
 const router = useRouter()
 
-const consumeId = computed(() => route.params.id as string)
+const consumeId = computed(() => routeLocation.params.id as string)
 
 const { data: consume, isLoading, error: queryError } = useQuery({
   queryKey: ['consume', consumeId],
