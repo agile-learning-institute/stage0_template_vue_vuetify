@@ -2,6 +2,16 @@ describe('Navigation Drawer', () => {
   beforeEach(() => {
     cy.login()
   })
+{#- Target for "navigate away" tests: first create domain, or first consume when there are no creates. #}
+{%- if service.data_domains.creates | length > 0 %}
+{%- set nav_cross_item = service.data_domains.creates[0] %}
+{%- elif service.data_domains.consumes | length > 0 %}
+{%- set nav_cross_item = service.data_domains.consumes[0] %}
+{%- elif service.data_domains.controls | length > 1 %}
+{%- set nav_cross_item = service.data_domains.controls[1] %}
+{%- else %}
+{%- set nav_cross_item = service.data_domains.controls[0] %}
+{%- endif %}
 
   it('should open navigation drawer with hamburger menu', () => {
     cy.visit('/{{ service.data_domains.controls[0] | lower }}s')
@@ -62,15 +72,15 @@ describe('Navigation Drawer', () => {
     cy.visit('/{{ service.data_domains.controls[0] | lower }}s')
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
-    cy.get('[data-automation-id="nav-{{ service.data_domains.creates[0] | lower }}s-list-link"]').scrollIntoView().click()
-    cy.url().should('include', '/{{ service.data_domains.creates[0] | lower }}s')
+    cy.get('[data-automation-id="nav-{{ nav_cross_item | lower }}s-list-link"]').scrollIntoView().click()
+    cy.url().should('include', '/{{ nav_cross_item | lower }}s')
   })
 
   it('should close drawer after navigation', () => {
     cy.visit('/{{ service.data_domains.controls[0] | lower }}s')
     cy.get('[data-automation-id="nav-drawer-toggle"]').click()
     
-    cy.get('[data-automation-id="nav-{{ service.data_domains.creates[0] | lower }}s-list-link"]').scrollIntoView().click()
+    cy.get('[data-automation-id="nav-{{ nav_cross_item | lower }}s-list-link"]').scrollIntoView().click()
     
     // Drawer should close after navigation (temporary drawer)
     cy.wait(500)
