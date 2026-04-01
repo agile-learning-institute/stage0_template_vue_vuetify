@@ -3,6 +3,7 @@
 This repository contains a Vue 3 single-page application (SPA) for the sample service.
 
 ## Prerequisites
+- **Node.js 24+** (see `package.json` `engines`)
 - Mentor Hub [Developers Edition](https://github.com/agile-learning-institute/mentorhub/blob/main/CONTRIBUTING.md)
 - Developer [SPA Standard Prerequisites](https://github.com/agile-learning-institute/mentorhub/blob/main/DeveloperEdition/standards/spa_standards.md)
 

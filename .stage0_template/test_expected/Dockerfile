@@ -1,5 +1,5 @@
-# Build stage (Node 22+ satisfies jsdom 29 engine range)
-FROM node:22-alpine AS build
+# Build stage (Node 24+; aligns with package.json engines and jsdom 29 / Cypress)
+FROM node:24-alpine AS build
 
 ENV NPM_CONFIG_UPDATE_NOTIFIER=false
 
