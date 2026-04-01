@@ -12,6 +12,7 @@ on:
       - closed
 jobs:
   build_push:
+    # Node for the SPA build comes from Dockerfile (e.g. node:24-alpine), not the runner.
     if: github.event_name == 'push' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:

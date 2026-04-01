@@ -2,6 +2,9 @@
   "name": "template_spa",
   "version": "0.1.0",
   "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
