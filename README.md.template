@@ -1,11 +1,10 @@
 # {{ info.name }} — {{ service.name | replace('_', ' ') | title }} SPA
 
-This repository contains a Vue 3 single-page application (SPA) for the {{service.name}} service.
+This repository contains a Vue 3 single-page application (SPA) for the {{ service.name }} service.
 
 ## Prerequisites
-- **Node.js 24+** (see `package.json` `engines`)
-- {{info.name}} [Developers Edition]({{org.git_host}}/{{org.git_org}}/{{info.slug}}/blob/main/CONTRIBUTING.md)
-- Developer [SPA Standard Prerequisites]({{org.git_host}}/{{org.git_org}}/{{info.slug}}/blob/main/DeveloperEdition/standards/spa_standards.md)
+- {{ info.name }} [Developers Edition](https://github.com/{{ org.git_org }}/{{ info.slug }}/blob/main/CONTRIBUTING.md)
+- Developer [SPA Standard Prerequisites](https://github.com/{{ org.git_org }}/{{ info.slug }}/blob/main/DeveloperEdition/standards/spa_standards.md)
 
 ## Quick Start
 
@@ -67,7 +66,7 @@ src/
   plugins/          # Vuetify plugin configuration
 ```
 
-**Note**: This template uses `@{{org.git_org}}/{{info.slug}}_spa_utils` for reusable components, composables, and utilities. See the [{{info.slug}}_spa_utils README](../{{info.slug}}_spa_utils/README.md) for complete documentation on available components (`AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`), composables (`useResourceList`, `useErrorHandler`, `useRoles`), and utilities (`formatDate`, `validationRules`).
+**Note**: This template uses `@{{ org.git_org }}/{{ info.slug }}_spa_utils` for reusable components, composables, and utilities. See the [{{ info.slug }}_spa_utils README](../{{ info.slug }}_spa_utils/README.md) for complete documentation on available components (`AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`), composables (`useResourceList`, `useErrorHandler`, `useRoles`), and utilities (`formatDate`, `validationRules`).
 
 ## Key Implementation Patterns
 
@@ -91,12 +90,12 @@ src/
 - Example: `useQuery({ queryKey: ['control', id], queryFn: () => api.getControl(id) })`
 
 ### Reusable Components and Composables
-This template uses components and composables from `@{{org.git_org}}/{{info.slug}}_spa_utils`:
+This template uses components and composables from `@{{ org.git_org }}/{{ info.slug }}_spa_utils`:
 - **Components**: `AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`
 - **Composables**: `useResourceList`, `useErrorHandler`, `useRoles`
 - **Utilities**: `formatDate`, `validationRules`
 
-See the [{{info.slug}}_spa_utils README](../{{info.slug}}_spa_utils/README.md) for complete documentation and usage examples.
+See the [{{ info.slug }}_spa_utils README](../{{ info.slug }}_spa_utils/README.md) for complete documentation and usage examples.
 
 ### Component Architecture
 - **Pages**: Own routing, data fetching, and mutations. Pass data + callbacks to components.
@@ -131,17 +130,6 @@ When adding a new resource or feature:
 7. **Cache Invalidation**: Invalidate related queries in mutation `onSuccess` callbacks
 8. **Error Handling**: Use `useErrorHandler` from `spa_utils` for consistent error handling
 9. **Write Tests**: Add unit tests and E2E tests for new functionality (note: common components are tested in `spa_utils`)
-
-## Technology Stack
-- Vue 3 with Composition API
-- TypeScript 5.9
-- Vite 7.2
-- Vuetify 3.11
-- Vue Router 4
-- Pinia 3
-- TanStack Query (Vue Query) v5
-- Vitest v3 (unit testing)
-- Cypress v15.8 (E2E testing)
 
 ## Automation Support
 

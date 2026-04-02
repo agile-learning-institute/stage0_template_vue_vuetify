@@ -3,7 +3,6 @@
 This repository contains a Vue 3 single-page application (SPA) for the sample service.
 
 ## Prerequisites
-- **Node.js 24+** (see `package.json` `engines`)
 - Mentor Hub [Developers Edition](https://github.com/agile-learning-institute/mentorhub/blob/main/CONTRIBUTING.md)
 - Developer [SPA Standard Prerequisites](https://github.com/agile-learning-institute/mentorhub/blob/main/DeveloperEdition/standards/spa_standards.md)
 
@@ -131,17 +130,6 @@ When adding a new resource or feature:
 7. **Cache Invalidation**: Invalidate related queries in mutation `onSuccess` callbacks
 8. **Error Handling**: Use `useErrorHandler` from `spa_utils` for consistent error handling
 9. **Write Tests**: Add unit tests and E2E tests for new functionality (note: common components are tested in `spa_utils`)
-
-## Technology Stack
-- Vue 3 with Composition API
-- TypeScript 5.9
-- Vite 7.2
-- Vuetify 3.11
-- Vue Router 4
-- Pinia 3
-- TanStack Query (Vue Query) v5
-- Vitest v3 (unit testing)
-- Cypress v15.8 (E2E testing)
 
 ## Automation Support
 
