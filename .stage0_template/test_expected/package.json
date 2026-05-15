@@ -20,7 +20,7 @@
     "push": "docker push ghcr.io/agile-learning-institute/mentorhub_sample_spa:latest",
     "open": "open -a 'Google Chrome' 'http://localhost:8388' || google-chrome 'http://localhost:8388' || exg-open 'localhost:8388'",
     "build-publish": "npm install --include=dev && npm run container && npm run push",
-    "build-package": "npm install --include=dev && npm run container",
+    "build-package": "npm install --include=dev && npx cypress install && npm run container",
     "publish-package": "npm run push",
     "delete-package": "gh api -X DELETE /orgs/agile-learning-institute/packages/container/mentorhub_sample_spa"
   },

@@ -17,7 +17,10 @@ npm run service
 
 ```sh
 ## install dependencies
-npm install 
+npm install
+
+## install Cypress binaries
+npx cypress install
 
 ## package code for deployment
 npm run build 

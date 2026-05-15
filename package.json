@@ -20,7 +20,7 @@
     "push": "docker push {{org.docker_host}}/{{org.docker_org}}/{{info.slug}}_{{service.name}}_spa:latest",
     "open": "open -a 'Google Chrome' 'http://localhost:{{repo.port}}' || google-chrome 'http://localhost:{{repo.port}}' || exg-open 'localhost:{{repo.port}}'",
     "build-publish": "npm install --include=dev && npm run container && npm run push",
-    "build-package": "npm install --include=dev && npm run container",
+    "build-package": "npm install --include=dev && npx cypress install && npm run container",
     "publish-package": "npm run push",
     "delete-package": "gh api -X DELETE /orgs/{{org.git_org}}/packages/container/{{info.slug}}_{{service.name}}_spa"
   },
