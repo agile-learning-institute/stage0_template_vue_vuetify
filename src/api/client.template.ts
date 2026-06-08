@@ -13,6 +13,7 @@ import type { {% for item in service.data_domains.controls %}
   InfiniteScrollParams,
   InfiniteScrollResponse
 } from './types'
+import { redirectToIdpLogin } from '@{{org.git_org}}/{{info.slug}}_spa_utils'
 
 const API_BASE = '/api'
 
@@ -55,12 +56,11 @@ async function request<T>(
       // Ignore JSON parse errors
     }
     
-    // Handle 401 Unauthorized - clear invalid token and redirect to login
+    // Handle 401 Unauthorized - clear invalid token and redirect to IdP login
     if (response.status === 401) {
       localStorage.removeItem('access_token')
       localStorage.removeItem('token_expires_at')
-      // Redirect to login page, preserving current path for post-login redirect
-      window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`
+      redirectToIdpLogin()
     }
     
     throw new ApiError(

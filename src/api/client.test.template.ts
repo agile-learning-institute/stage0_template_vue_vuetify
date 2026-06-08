@@ -59,7 +59,12 @@ describe('API Client', () => {
       localStorage.setItem('access_token', 'invalid-token')
       localStorage.setItem('token_expires_at', '2026-12-31T23:59:59Z')
       originalLocation = window.location
-      mockLocation = { href: '', pathname: '/controls' }
+      mockLocation = {
+        href: '',
+        origin: 'http://localhost',
+        pathname: '/controls',
+        search: '',
+      }
       delete (window as any).location
       window.location = mockLocation as Location
     })
@@ -84,7 +89,9 @@ describe('API Client', () => {
 
       expect(localStorage.getItem('access_token')).toBeNull()
       expect(localStorage.getItem('token_expires_at')).toBeNull()
-      expect(mockLocation.href).toBe('/login?redirect=%2Fcontrols')
+      expect(mockLocation.href).toBe(
+        'http://127.0.0.1:8080/login.html?return_to=http%3A%2F%2Flocalhost%2Fcontrols'
+      )
     })
   })
 })

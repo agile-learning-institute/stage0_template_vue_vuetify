@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuth, hasStoredRole } from '@/composables/useAuth'
+import { redirectToIdpLogin } from '@{{org.git_org}}/{{info.slug}}_spa_utils'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -7,12 +8,6 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/{{ service.data_domains.controls[0] | lower }}s'
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: () => import('@/pages/LoginPage.vue'),
-      meta: { requiresAuth: false }
     },
     {% for item in service.data_domains.controls %}
     // Control domain: {{ item }}
@@ -86,7 +81,7 @@ router.beforeEach((to, _from, next) => {
   
   // Check authentication
   if (to.meta.requiresAuth && !isAuthenticated.value) {
-    next({ name: 'Login', query: { redirect: to.fullPath } })
+    redirectToIdpLogin(window.location.origin + to.fullPath)
     return
   }
   
@@ -101,8 +96,8 @@ router.beforeEach((to, _from, next) => {
   next()
 })
 
-router.afterEach((to) => {
-  document.title = to.path === '/login' ? '{{info.name}} Login' : '{{service.name | capitalize}}'
+router.afterEach(() => {
+  document.title = '{{service.name | capitalize}}'
 })
 
 export default router
