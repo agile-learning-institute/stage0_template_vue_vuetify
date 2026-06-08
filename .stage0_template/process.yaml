@@ -90,9 +90,6 @@ templates:
   - path: "./src/initAuth.template.ts"
     output: "./src/initAuth.ts"
     merge: true
-  - path: "./src/pages/LoginPage.template.vue"
-    output: "./src/pages/LoginPage.vue"
-    merge: true
   - path: "./src/pages/AdminPage.template.vue"
     output: "./src/pages/AdminPage.vue"
     merge: true

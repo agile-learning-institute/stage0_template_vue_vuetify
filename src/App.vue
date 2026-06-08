@@ -95,6 +95,7 @@ import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 import { useConfig } from '@/composables/useConfig'
 import { useRoles } from '@/composables/useRoles'
+import { redirectToIdpLogin } from '@{{org.git_org}}/{{info.slug}}_spa_utils'
 
 const router = useRouter()
 const { isAuthenticated, logout } = useAuth()
@@ -124,6 +125,6 @@ onMounted(async () => {
 function handleLogout() {
   logout()
   drawer.value = false
-  router.push('/login')
+  redirectToIdpLogin(window.location.origin + '/')
 }
 </script>

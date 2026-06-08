@@ -11,7 +11,7 @@ WORKDIR /app
 # Fresh template clones have no lockfile yet — npm install runs; once lock exists, npm ci is used.
 COPY package*json ./
 
-ARG VITE_IDP_LOGIN_URI=http://127.0.0.1:8080/
+ARG VITE_IDP_LOGIN_URI=http://127.0.0.1:8080/login.html
 ENV VITE_IDP_LOGIN_URI=$VITE_IDP_LOGIN_URI
 
 # Install spa_utils via git (not npm.pkg.github.com). For private repos, pass the same token

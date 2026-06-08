@@ -7,6 +7,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    env: {
+      VITE_IDP_LOGIN_URI: 'http://127.0.0.1:8080/login.html',
+    },
     css: {
       modules: {
         classNameStrategy: 'non-scoped'
