@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { useQuery } from '@tanstack/vue-query'
-import { AdminPage } from '@agile-learning-institute/mentorhub_spa_utils'
+import { AdminPage } from '@mentor-forge/mentorhub_spa_utils'
 import { api } from '@/api/client'
 import type { ConfigResponse } from '@/api/types'
 

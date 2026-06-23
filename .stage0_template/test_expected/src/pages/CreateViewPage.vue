@@ -99,7 +99,7 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useQuery } from '@tanstack/vue-query'
-import { formatDate, useErrorHandler } from '@agile-learning-institute/mentorhub_spa_utils'
+import { formatDate, useErrorHandler } from '@mentor-forge/mentorhub_spa_utils'
 import { api } from '@/api/client'
 
 const routeLocation = useRoute()

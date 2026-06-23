@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { useRoles as useRolesBase, type AuthProvider, type ConfigProvider } from '@agile-learning-institute/mentorhub_spa_utils'
+import { useRoles as useRolesBase, type AuthProvider, type ConfigProvider } from '@mentor-forge/mentorhub_spa_utils'
 import { useAuth } from './useAuth'
 import { useConfig } from './useConfig'
 

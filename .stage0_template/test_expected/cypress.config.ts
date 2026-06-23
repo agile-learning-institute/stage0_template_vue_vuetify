@@ -1,7 +1,7 @@
 import createBundler from '@bahmutov/cypress-esbuild-preprocessor'
 import { defineConfig } from 'cypress'
-import { e2eDefaultJwtSecret } from '@agile-learning-institute/mentorhub_spa_utils/cypress/jwtDefaults'
-import { registerJwtSignTask } from '@agile-learning-institute/mentorhub_spa_utils/cypress/registerJwtSignTask'
+import { e2eDefaultJwtSecret } from '@mentor-forge/mentorhub_spa_utils/cypress/jwtDefaults'
+import { registerJwtSignTask } from '@mentor-forge/mentorhub_spa_utils/cypress/registerJwtSignTask'
 
 export default defineConfig({
   e2e: {

@@ -99,12 +99,12 @@
 /**
  * Creates List Page - Powered by mentorhub_spa_utils
  * 
- * This page uses useInfiniteScroll from @agile-learning-institute/mentorhub_spa_utils
+ * This page uses useInfiniteScroll from @mentor-forge/mentorhub_spa_utils
  * to get infinite scroll, search, and sorting with minimal code.
  */
 import { computed } from 'vue'
 import { api } from '@/api/client'
-import { formatDate, ListPageSearch, useInfiniteScroll } from '@agile-learning-institute/mentorhub_spa_utils'
+import { formatDate, ListPageSearch, useInfiniteScroll } from '@mentor-forge/mentorhub_spa_utils'
 import { useRouter } from 'vue-router'
 import type { Create } from '@/api/types'
 
