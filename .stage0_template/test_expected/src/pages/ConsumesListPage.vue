@@ -83,7 +83,7 @@
  */
 import { computed } from 'vue'
 import { api } from '@/api/client'
-import { ListPageSearch, useInfiniteScroll } from '@agile-learning-institute/mentorhub_spa_utils'
+import { ListPageSearch, useInfiniteScroll } from '@mentor-forge/mentorhub_spa_utils'
 import { useRouter } from 'vue-router'
 import type { Consume } from '@/api/types'
 

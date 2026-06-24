@@ -121,11 +121,11 @@
  * - Error handling
  * 
  * All of this functionality comes from a single composable: useInfiniteScroll
- * from @agile-learning-institute/mentorhub_spa_utils. Just provide your API call and you're done!
+ * from @mentor-forge/mentorhub_spa_utils. Just provide your API call and you're done!
  */
 import { computed } from 'vue'
 import { api } from '@/api/client'
-import { formatDate, ListPageSearch, useInfiniteScroll } from '@agile-learning-institute/mentorhub_spa_utils'
+import { formatDate, ListPageSearch, useInfiniteScroll } from '@mentor-forge/mentorhub_spa_utils'
 import { useRouter } from 'vue-router'
 import type { Control } from '@/api/types'
 

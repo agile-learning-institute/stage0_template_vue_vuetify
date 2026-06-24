@@ -13,7 +13,7 @@ import type {
   InfiniteScrollParams,
   InfiniteScrollResponse
 } from './types'
-import { redirectToIdpLogin } from '@agile-learning-institute/mentorhub_spa_utils'
+import { redirectToIdpLogin } from '@mentor-forge/mentorhub_spa_utils'
 
 const API_BASE = '/api'
 

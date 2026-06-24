@@ -76,7 +76,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import { api } from '@/api/client'
-import { validationRules, useErrorHandler } from '@agile-learning-institute/mentorhub_spa_utils'
+import { validationRules, useErrorHandler } from '@mentor-forge/mentorhub_spa_utils'
 import type { ControlInput } from '@/api/types'
 
 const router = useRouter()

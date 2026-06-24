@@ -3,8 +3,8 @@
 This repository contains a Vue 3 single-page application (SPA) for the sample service.
 
 ## Prerequisites
-- Mentor Hub [Developers Edition](https://github.com/agile-learning-institute/mentorhub/blob/main/CONTRIBUTING.md)
-- Developer [SPA Standard Prerequisites](https://github.com/agile-learning-institute/mentorhub/blob/main/DeveloperEdition/standards/spa_standards.md)
+- Mentor Hub [Developers Edition](https://github.com/mentor-forge/mentorhub/blob/main/CONTRIBUTING.md)
+- Developer [SPA Standard Prerequisites](https://github.com/mentor-forge/mentorhub/blob/main/DeveloperEdition/standards/spa_standards.md)
 
 ## Quick Start
 
@@ -69,7 +69,7 @@ src/
   plugins/          # Vuetify plugin configuration
 ```
 
-**Note**: This template uses `@agile-learning-institute/mentorhub_spa_utils` for reusable components, composables, and utilities. See the [mentorhub_spa_utils README](../mentorhub_spa_utils/README.md) for complete documentation on available components (`AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`), composables (`useResourceList`, `useErrorHandler`, `useRoles`), and utilities (`formatDate`, `validationRules`).
+**Note**: This template uses `@mentor-forge/mentorhub_spa_utils` for reusable components, composables, and utilities. See the [mentorhub_spa_utils README](../mentorhub_spa_utils/README.md) for complete documentation on available components (`AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`), composables (`useResourceList`, `useErrorHandler`, `useRoles`), and utilities (`formatDate`, `validationRules`).
 
 ## Key Implementation Patterns
 
@@ -93,7 +93,7 @@ src/
 - Example: `useQuery({ queryKey: ['control', id], queryFn: () => api.getControl(id) })`
 
 ### Reusable Components and Composables
-This template uses components and composables from `@agile-learning-institute/mentorhub_spa_utils`:
+This template uses components and composables from `@mentor-forge/mentorhub_spa_utils`:
 - **Components**: `AutoSaveField`, `AutoSaveSelect`, `ListPageSearch`
 - **Composables**: `useResourceList`, `useErrorHandler`, `useRoles`
 - **Utilities**: `formatDate`, `validationRules`

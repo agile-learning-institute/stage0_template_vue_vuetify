@@ -95,7 +95,7 @@ import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 import { useConfig } from '@/composables/useConfig'
 import { useRoles } from '@/composables/useRoles'
-import { redirectToIdpLogin } from '@agile-learning-institute/mentorhub_spa_utils'
+import { redirectToIdpLogin } from '@mentor-forge/mentorhub_spa_utils'
 
 const router = useRouter()
 const { isAuthenticated, logout } = useAuth()

@@ -123,7 +123,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/vue-query'
 import { api } from '@/api/client'
 // 🎯 All these utilities come from spa_utils - ready to use!
-import { AutoSaveField, AutoSaveSelect, validationRules, formatDate, useErrorHandler } from '@agile-learning-institute/mentorhub_spa_utils'
+import { AutoSaveField, AutoSaveSelect, validationRules, formatDate, useErrorHandler } from '@mentor-forge/mentorhub_spa_utils'
 import type { ControlUpdate } from '@/api/types'
 
 const routeLocation = useRoute()

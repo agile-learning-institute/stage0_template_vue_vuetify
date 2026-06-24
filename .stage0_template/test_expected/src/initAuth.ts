@@ -1,3 +1,3 @@
-import { bootstrapAuthFromUrl } from '@agile-learning-institute/mentorhub_spa_utils'
+import { bootstrapAuthFromUrl } from '@mentor-forge/mentorhub_spa_utils'
 
 bootstrapAuthFromUrl()
