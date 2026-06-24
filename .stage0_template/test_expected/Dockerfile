@@ -13,7 +13,7 @@ ENV VITE_IDP_LOGIN_URI=$VITE_IDP_LOGIN_URI
 # CodeArtifact auth via BuildKit secret (CI or scripts/docker-build.sh); no git clone of spa_utils.
 RUN --mount=type=secret,id=codeartifact_token \
     --mount=type=cache,target=/root/.npm \
-    sh -c 'echo "//mentor-forge-560167829275.d.codeartifact.us-east-1.amazonaws.com/npm/mentorhub-npm/:_authToken=$(cat /run/secrets/codeartifact_token)" >> .npmrc && \
+    sh -c 'echo "" >> .npmrc; echo "//mentor-forge-560167829275.d.codeartifact.us-east-1.amazonaws.com/npm/mentorhub-npm/:_authToken=$(cat /run/secrets/codeartifact_token)" >> .npmrc && \
     if [ -f package-lock.json ]; then npm ci; else npm install; fi'
 
 COPY . .
